@@ -1,0 +1,902 @@
+/* --- VARIABLES (Colores y Fuentes) --- */
+:root {
+    --primary-color: #2c3e50;
+    /* Azul oscuro (Sidebar) */
+    --accent-color: #3498db;
+    /* Azul brillante (Detalles) */
+    --text-dark: #333333;
+    /* Texto principal */
+    --text-light: #f4f4f4;
+    /* Texto sobre fondo oscuro */
+    --bg-sidebar: #1e293b;
+    /* Fondo sidebar */
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #eef2f5;
+    /* Gris suave para la web */
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-size: 14px;
+    /* Tamaño legible y compacto */
+}
+
+/* --- LAYOUT PRINCIPAL (Contenedor Carta) --- */
+.resume-container {
+    max-width: 850px;
+    margin: 20px auto;
+    background: white;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 40px);
+    /* Removemos max-height para permitir scroll */
+}
+
+/* --- SIDEBAR (Izquierda) --- */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    color: var(--text-light);
+    padding: 25px 18px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+/* Foto de perfil con efecto neon */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-img-neon {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+    box-shadow:
+        0 0 20px #3498db,
+        0 0 40px #3498db,
+        0 0 60px #3498db,
+        inset 0 0 20px rgba(52, 152, 219, 0.2);
+    animation: neonPulse 2s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+}
+
+.profile-img-neon:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 25px #3498db,
+        0 0 50px #3498db,
+        0 0 75px #3498db,
+        inset 0 0 25px rgba(52, 152, 219, 0.3);
+}
+
+@keyframes neonPulse {
+    0% {
+        box-shadow:
+            0 0 20px #3498db,
+            0 0 40px #3498db,
+            0 0 60px #3498db,
+            inset 0 0 20px rgba(52, 152, 219, 0.2);
+    }
+
+    100% {
+        box-shadow:
+            0 0 25px #3498db,
+            0 0 50px #3498db,
+            0 0 75px #3498db,
+            inset 0 0 25px rgba(52, 152, 219, 0.3);
+    }
+}
+
+.sidebar .name {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.sidebar .title {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #cbd5e1;
+    margin-bottom: 25px;
+}
+
+/* Contacto */
+.contact-info {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.contact-info .item {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info .item i {
+    width: 18px;
+    color: var(--accent-color);
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.contact-info .item a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info .item a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Habilidades en Sidebar */
+.skills-section {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.skills-section h3 {
+    font-size: 0.95rem;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.skills-list {
+    list-style: none;
+}
+
+.skills-list li {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.skills-list li::before {
+    content: "•";
+    color: var(--accent-color);
+    margin-right: 6px;
+}
+
+/* --- CONTENIDO PRINCIPAL (Derecha) --- */
+.main-content {
+    padding: 25px 30px;
+    background-color: white;
+    /* Removemos overflow-y: auto para permitir scroll natural */
+}
+
+/* Animaciones */
+.animate-up {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Secciones */
+.section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    display: block;
+}
+
+/* Items de Experiencia/Proyectos */
+.experience-item {
+    margin-bottom: 15px;
+}
+
+.header-exp {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.header-exp h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.header-exp .date {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tech-stack {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.experience-item ul {
+    list-style: none;
+    margin-top: 4px;
+}
+
+.experience-item ul li {
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 3px;
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+.experience-item ul li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Lista de certificados */
+.cert-list {
+    list-style: none;
+}
+
+.cert-list li {
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 12px;
+}
+
+.cert-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* --- BOTÓN FLOTANTE (Solo Web) --- */
+.print-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background 0.2s;
+    z-index: 100;
+}
+
+.print-btn:hover {
+    transform: scale(1.1);
+    background: #2980b9;
+}
+
+/* --- CARRUSEL (Tecnologías, Cierres) --- */
+
+/* Carrusel de tecnologías */
+.tech-carousel {
+    position: relative;
+    margin: 15px 0;
+    overflow: hidden;
+    width: 100%;
+    height: 55px;
+}
+
+.tech-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(.4, 1.4, .6, 1);
+    gap: 10px;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    min-width: 80px;
+    height: 55px;
+    background: #f4f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.07);
+    padding: 3px 0;
+    font-size: 0.8rem;
+    color: #2c3e50;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.tech-item i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.tech-item span {
+    font-size: 0.7rem;
+    margin-top: 1px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.tech-item:hover {
+    box-shadow: 0 4px 12px #3498db33;
+    transform: scale(1.05);
+}
+
+.tech-carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2c3e50cc;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+}
+
+.tech-carousel .tech-prev {
+    left: 0;
+}
+
+.tech-carousel .tech-next {
+    right: 0;
+}
+
+.tech-carousel button:hover {
+    background: #3498db;
+}
+
+/* Lista de tecnologías para impresión */
+.tech-print-list {
+    display: none;
+}
+
+.tech-category {
+    margin-bottom: 12px;
+}
+
+.tech-category h4 {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 6px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 2px;
+}
+
+.tech-category ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+}
+
+.tech-category li {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tech-category li i {
+    width: 14px;
+    font-size: 12px;
+}
+
+/* Carrusel de cierres */
+.cierres-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    overflow: hidden;
+    min-height: 260px;
+}
+
+.cierres-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(.4, 1.4, .6, 1);
+}
+
+.cierre-item {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.cierre-item.active {
+    display: flex;
+    animation: fadeInUp 0.7s;
+}
+
+.cierre-item img {
+    width: 90%;
+    max-width: 320px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px #2c3e5022;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cierre-item img:hover {
+    transform: scale(1.02);
+}
+
+.cierres-carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2c3e50cc;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+}
+
+.cierres-carousel .cierres-prev {
+    left: 0;
+}
+
+.cierres-carousel .cierres-next {
+    right: 0;
+}
+
+.cierres-carousel button:hover {
+    background: #3498db;
+}
+
+/* Contenedor de imágenes múltiples */
+.multi-image-container {
+    position: relative;
+    width: 90%;
+    max-width: 320px;
+}
+
+.multi-image-container img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #2c3e5022;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.multi-image-container img:hover {
+    transform: scale(1.02);
+}
+
+.multi-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.multi-nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.multi-nav button:hover {
+    color: var(--accent-color);
+}
+
+.multi-counter {
+    color: white;
+    font-size: 12px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Modal para imágenes */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 800px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close:hover {
+    color: var(--accent-color);
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    transform: translateY(-50%);
+}
+
+.modal-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.modal-nav button:hover {
+    background: rgba(52, 152, 219, 0.8);
+}
+
+/* Clases de utilidad */
+.web-only {
+    display: block;
+}
+
+.print-only {
+    display: none;
+}
+
+.no-print {
+    /* Elementos que no aparecen al imprimir */
+}
+
+/* --- RESPONSIVE (Móvil) --- */
+@media (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    .resume-container {
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        min-height: 100vh;
+        /* Removemos max-height y overflow para móvil */
+    }
+
+    .sidebar {
+        text-align: center;
+        padding: 25px 20px;
+        order: 1;
+    }
+
+    .main-content {
+        padding: 20px;
+        order: 2;
+    }
+
+    .profile-img-neon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .sidebar .name {
+        font-size: 1.2rem;
+    }
+
+    .contact-info,
+    .skills-section {
+        text-align: center;
+    }
+
+    .contact-info .item {
+        justify-content: center;
+        font-size: 0.75rem;
+    }
+
+    .skills-section h3 {
+        text-align: center;
+    }
+
+    .tech-item {
+        width: 70px;
+        min-width: 70px;
+        height: 50px;
+    }
+
+    .tech-item i {
+        font-size: 18px;
+    }
+
+    .tech-item span {
+        font-size: 0.65rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    .header-exp {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-exp .date {
+        margin-top: 2px;
+    }
+}
+
+/* --- IMPRESIÓN (Hoja Carta) --- */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.4cm;
+    }
+
+    body {
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .resume-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        box-shadow: none;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        page-break-inside: avoid;
+    }
+
+    .sidebar {
+        background-color: var(--bg-sidebar) !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        padding: 15px 12px;
+    }
+
+    .main-content {
+        padding: 15px 20px;
+    }
+
+    /* Ocultar elementos web */
+    .print-btn,
+    .no-print,
+    .web-only {
+        display: none !important;
+    }
+
+    /* Mostrar elementos de impresión */
+    .print-only {
+        display: block !important;
+    }
+
+    /* Mostrar tecnologías organizadas */
+    .tech-print-list {
+        display: block !important;
+    }
+
+    .tech-category {
+        margin-bottom: 8px;
+        page-break-inside: avoid;
+    }
+
+    .tech-category h4 {
+        font-size: 0.8rem;
+        color: var(--accent-color) !important;
+        margin-bottom: 4px;
+        border-bottom: 1px solid #cbd5e1 !important;
+        padding-bottom: 1px;
+    }
+
+    .tech-category ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+    }
+
+    .tech-category li {
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .tech-category li i {
+        width: 12px;
+        font-size: 10px;
+    }
+
+    /* Quitar animaciones para el papel */
+    .animate-up {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Ajustar enlaces para que se vean limpios */
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Evitar saltos de página en elementos importantes */
+    .section,
+    .experience-item,
+    .skills-section {
+        page-break-inside: avoid;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin-bottom: 12px;
+    }
+
+    .section-title {
+        color: #222 !important;
+        border-bottom: 1px solid #aaa !important;
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    /* Ajustar tamaños para impresión */
+    .sidebar .name {
+        font-size: 1.1rem;
+    }
+
+    .sidebar .title {
+        font-size: 0.75rem;
+    }
+
+    .contact-info .item {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+
+    .skills-section h3 {
+        font-size: 0.8rem;
+    }
+
+    .skills-list li {
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+
+    /* Foto de perfil para impresión */
+    .profile-img-neon {
+        width: 100px !important;
+        height: 100px !important;
+        animation: none !important;
+        box-shadow: 0 0 0 2px #3498db !important;
+    }
+
+    .profile-container {
+        margin-bottom: 15px;
+    }
+
+    /* Ajustar contenido principal */
+    .experience-item {
+        margin-bottom: 10px;
+    }
+
+    .header-exp h4 {
+        font-size: 0.9rem;
+    }
+
+    .header-exp .date {
+        font-size: 0.75rem;
+    }
+
+    .tech-stack {
+        font-size: 0.75rem;
+    }
+
+    .experience-item ul li {
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+    }
+
+    .cert-list li {
+        font-size: 0.8rem;
+        margin-bottom: 3px;
+    }
+}
